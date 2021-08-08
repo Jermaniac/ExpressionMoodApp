@@ -1,0 +1,26 @@
+
+#form {
+    background-color: lightblue;
+    padding:30px;
+    border: 1px solid black;
+}
+
+#form > .row {
+    justify-content: center;
+    text-align: center;
+}
+
+#form > .row > div{
+    font-weight: 900;
+    font-size: x-large;
+}
+#form > .row > #title{
+    font-style: initial;
+}
+#form >.row > #instruction{
+    font-style: italic;
+}
+
+img {
+    width: 100%;
+}

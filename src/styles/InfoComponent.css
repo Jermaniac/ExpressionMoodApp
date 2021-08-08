@@ -1,0 +1,16 @@
+.container-fluid {
+    display: grid;
+}
+
+#content {
+    align-items: center;
+}
+#imageEmoji {
+    padding: 7px;
+}
+
+#info {
+    background-color: lightgrey;
+    display: grid;
+    border: 1px solid black;
+}
