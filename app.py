@@ -104,11 +104,9 @@ print("El modelo ha sido cargado.")
 
 
 app = Flask(__name__)
-# @app.hook('after_request')
-# def enable_cors():
-#     response.headers['Access-Control-Allow-Origin'] = '*'
 
 @app.route("/getMood", methods=["POST"])
+@cross_origin()
 def do_upload():
 
     foto = request.files["photo"]
