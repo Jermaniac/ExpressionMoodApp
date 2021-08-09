@@ -11,10 +11,11 @@ from tensorflow.keras.optimizers import *
 import numpy as np
 
 
-# ### Imports de Bottle para que funcionen las peticiones POST al servidor.
+# ### Imports de Flask para que funcionen las peticiones POST al servidor.
 
+from flask import Flask, request
 
-from bottle import Bottle,route, run, request,response
+# from bottle import Bottle,route, run, request,response
 
 
 # ### Imports de PIL para abrir la foto y poder manipularla.
@@ -108,12 +109,12 @@ print("El modelo ha sido cargado.")
 
 
 
-app = Bottle()
-@app.hook('after_request')
-def enable_cors():
-    response.headers['Access-Control-Allow-Origin'] = '*'
+app = Flask(__name__)
+# @app.hook('after_request')
+# def enable_cors():
+#     response.headers['Access-Control-Allow-Origin'] = '*'
 
-@app.route("/getMood", method="POST")
+@app.route("/getMood", methods=["POST"])
 def do_upload():
 
     foto = request.files["photo"]
@@ -134,6 +135,6 @@ def do_upload():
 
 # ### Ejecutamos el servidor para que se puedan realizar peticiones.
 
-
-run(app,host=ip, port=9004)
+if __name__ == "__main__":
+    app.run(host=ip, port=9004)
 
