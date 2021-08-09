@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-
-
+import tensorflow
 # ### Imports de Keras: incluye definiciones de modelo a partir de json, optimizadores de la CNN, funciones para pasar a hot encoding y funciones para que funcione la CNN.
-from keras.models import model_from_json
-from keras.optimizers import *
+from tensorflow.keras.models import model_from_json
+from tensorflow.keras.optimizers import *
 
 
 
@@ -97,7 +97,7 @@ loaded_model_json = json_file.read()
 json_file.close()
 model = model_from_json(loaded_model_json)
 # cargamos el archivo h5
-model.load_weights("expressionsh5.h5")   
+model.load_weights("expressionsh5.h5")
 # compilamos el modelo para poder usarlo
 adamOpt = Adam(learning_rate=0.001)
 model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer=adamOpt)
@@ -115,7 +115,7 @@ def enable_cors():
 
 @app.route("/getMood", method="POST")
 def do_upload():
-    
+
     foto = request.files["photo"]
     # usamos un archivo temporal para poder manipular la foto
     temporal = tempfile.TemporaryFile()
@@ -126,9 +126,9 @@ def do_upload():
     resultado = do_prediction(imagen_lista)
     # cerramos el archivo temporal
     temporal.close()
-    
+
     print(resultado)
-    
+
     return resultado
 
 
