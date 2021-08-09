@@ -1,5 +1,4 @@
 bottle==0.12.19
-keras_nightly==2.5.0.dev2021032900
 numpy==1.19.5
 tensorflow==2.5.0
 keras==2.4.3
