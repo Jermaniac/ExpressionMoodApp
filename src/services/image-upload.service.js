@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const keyFile = "photo";
-const urlApi =  "http://ec2-3-236-13-113.compute-1.amazonaws.com:9004/getMood";
+const urlApi =  "https://expression-test-2.herokuapp.com/getMood";
 
 class ImageUploadService {
 
