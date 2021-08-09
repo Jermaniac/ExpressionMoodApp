@@ -2,7 +2,7 @@
 # coding: utf-
 # import tensorflow
 # # ### Imports de Keras: incluye definiciones de modelo a partir de json, optimizadores de la CNN, funciones para pasar a hot encoding y funciones para que funcione la CNN.
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 # from tensorflow.keras.optimizers import *
 
 
