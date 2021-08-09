@@ -6,7 +6,6 @@ from tensorflow.keras.models import load_model
 # from tensorflow.keras.optimizers import *
 
 
-
 # ### Import para utilizar numpy arrays.
 import numpy as np
 
@@ -14,6 +13,8 @@ import numpy as np
 # ### Imports de Flask para que funcionen las peticiones POST al servidor.
 
 from flask import Flask, request
+
+from flask_cors import CORS
 
 # from bottle import Bottle,route, run, request,response
 
@@ -104,9 +105,9 @@ print("El modelo ha sido cargado.")
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/getMood", methods=["POST"])
-@cross_origin()
 def do_upload():
 
     foto = request.files["photo"]
