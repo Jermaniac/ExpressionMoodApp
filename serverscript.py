@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-
-import tensorflow
-# ### Imports de Keras: incluye definiciones de modelo a partir de json, optimizadores de la CNN, funciones para pasar a hot encoding y funciones para que funcione la CNN.
-from tensorflow.keras.models import model_from_json
-from tensorflow.keras.optimizers import *
+# import tensorflow
+# # ### Imports de Keras: incluye definiciones de modelo a partir de json, optimizadores de la CNN, funciones para pasar a hot encoding y funciones para que funcione la CNN.
+from keras.models import load_model
+# from tensorflow.keras.optimizers import *
 
 
 
@@ -92,16 +92,10 @@ def prepare_json(porcentajes):
 
 # # PROGRAMA
 
-# el modelo ya existe y no hace falta entrenar la NN, por lo que cargamos el json
-json_file = open('expresionsjson.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-model = model_from_json(loaded_model_json)
 # cargamos el archivo h5
-model.load_weights("expressionsh5.h5")
+model = load_model("expressionsh5MODELtestX.h5")
 # compilamos el modelo para poder usarlo
-adamOpt = Adam(learning_rate=0.001)
-model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer=adamOpt)
+# model.compile(loss='categorical_crossentropy', metrics=['accuracy'])
 print("El modelo ha sido cargado.")
 
 
