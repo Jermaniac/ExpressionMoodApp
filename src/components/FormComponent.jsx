@@ -31,9 +31,9 @@ const FormComponent = () => {
   };
 
   return (
-    <div className="col-12 col-md-4 col-lg-3" id="form">
+    <form className="col-12 col-md-4 col-lg-3" id="form">
       <div className="row">
-        <div id="title">Upload the photo you want to be predicted</div>
+        <h1 className="text-white" id="title">Upload the photo you want to be predicted</h1>
       </div>
       <div className="row">
         <div id="instruction">Click on the image</div>
@@ -56,7 +56,7 @@ const FormComponent = () => {
           PREDICT THIS PHOTO
         </button>
       </div>
-    </div>
+    </form>
   );
 }
 
