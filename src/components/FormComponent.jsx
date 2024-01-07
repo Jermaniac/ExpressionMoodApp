@@ -1,34 +1,25 @@
-import { useState } from 'react';
-import ImageUploadService from '../services/image-upload.service';
+import { useContext, useState } from 'react';
+import { ExpressionContext } from '../context/expressionContext';
+import { getMood } from '../services/image-upload.service';
 import '../styles/FormComponent.css'
 
-function FormComponent({ changeExpressions, changePhoto, photo }) {
+const FormComponent = () => {
+  const expContext = useContext(ExpressionContext)
 
-  const [getPhotoFile, setPhotoFile] = useState();
+  const [getPhotoFile, setPhotoFile] = useState()
 
   const selectPhoto = (event) => {
     const photoSelect = event.target.files[0];
     setPhotoFile(photoSelect);
-    changePhoto(photoSelect);
   };
 
   const requestPredict = async () => {
-    const response = (await ImageUploadService.getMood(getPhotoFile));
-    if (response && response.data){
-      console.log("Call API SUCCESS!");
-      changeExpressions(response.data.expressions)
-    }
-    else {
+    const response = (await getMood(getPhotoFile));
+    if (!response && !response.expressions){
       console.log("Call API FAILED.")
     }
-    // ImageUploadService.getMood(getPhotoFile).then((response) => {
-    //   if (response) {
-    //     console.log("Call API success!");
-    //     changeExpressions(response.expressions);
-    //   } else {
-    //     console.log("Call API failed.");
-    //   }
-    // });
+    console.log("Call API SUCCESS!");
+    expContext.setExpressions(response.expressions)
   };
 
   return (
@@ -49,7 +40,7 @@ function FormComponent({ changeExpressions, changePhoto, photo }) {
             style={{ display: "none" }}
             onChange={selectPhoto}
           ></input>
-          <img src={photo.photoUrl} alt="blankPic"></img>
+          <img src={getPhotoFile?.photoUrl} alt="blankPic"></img>
         </label>
       </div>
       <div className="row">

@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ExpressionContext } from '../context/expressionContext';
 import '../styles/InfoComponent.css'
 
-function InfoComponent({ expressions }) {
+const InfoComponent = () => {
 
-  if (expressions) {
-    let expressionsFormatted = formatProbabilities(expressions);
+  const expContext = useContext(ExpressionContext)
+  if (expContext.expressions) {
+    let expressionsFormatted = formatProbabilities(expContext.expressions);
 
     return (
     <div className="col-12 col-md-8 col-lg-9" id="info">
-        {
+        { expressionsFormatted && 
         expressionsFormatted.map((expression) => {
           let emojiSrc = `./assets/images/emoji_${expression.mood}.png`;
           return (
@@ -38,7 +40,6 @@ function InfoComponent({ expressions }) {
         })
         }
       </div>
-    // <div></div>
     );
   } else {
     return (
@@ -49,9 +50,9 @@ function InfoComponent({ expressions }) {
 }
 
 function formatProbabilities(expressions){
-    return expressions.map( (expression) => {
+    return expressions && expressions.length && expressions.map( (expression) => {
         return  {
-            mood: expression.mood,
+            ...expression,
             probability: (expression.probability * 100).toFixed(2)
         }
 

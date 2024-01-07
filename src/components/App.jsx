@@ -1,36 +1,20 @@
 import React from 'react'
 
 import InfoExpressions from './InfoComponent'
-
-import '../styles/App.css'
-import { changeExpressions, changePhoto } from '../redux/actionCreators';
-
-import { connect } from 'react-redux'
 import FormComponent from './FormComponent';
 
-const mapStateToProps = state => {
-  return {
-    expressions: state.expressions,
-    photo: state.photo
-  }
-};
-
-const mapDispatchToProps = dispatch => ({
-  changeExpressions: (expressions) => dispatch(changeExpressions(expressions)),
-  changePhoto: (photo) => dispatch(changePhoto(photo))
-});
+import '../styles/App.css'
+import { ExpressionContextProvider } from '../context/expressionContext';
 
 class App extends React.Component {
-
   render () {
     return (
         <div className="container">
           <div className="row">
-              <FormComponent changeExpressions={this.props.changeExpressions}
-              changePhoto={this.props.changePhoto}
-              photo={this.props.photo}
-              ></FormComponent>
-              <InfoExpressions  expressions={this.props.expressions} ></InfoExpressions>
+            <ExpressionContextProvider>
+              <FormComponent/>
+              <InfoExpressions/>
+            </ExpressionContextProvider>
           </div>
         </div>
     );
@@ -38,4 +22,4 @@ class App extends React.Component {
 
 }
 
-export default ( connect ( mapStateToProps, mapDispatchToProps )( App ))
+export default App

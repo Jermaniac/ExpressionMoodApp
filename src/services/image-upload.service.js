@@ -1,34 +1,18 @@
-import axios from 'axios'
-
 const keyFile = "photo";
 const urlApi =  "https://expression-mood-api.herokuapp.com/getMood";
 
-class ImageUploadService {
-
-  getMood(file) {
-
-    const formData = new FormData();
-    formData.append(keyFile, file);
-
-    return axios.post( urlApi , formData , { timeout : 5000 })
-    .then (data => {
-      return data;
-    })
-    .catch( error => {
-      alert(`Error calling API. \n${error}`);
-    })
-
-    // return fetch(urlApi, {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     return data;
-    //   })
-    //   .catch((error) => console.error(error));
-  }
-
+export const getMood = async (file) => {
+  const formData = new FormData();
+  formData.append(keyFile, file);
+  const response = await fetch(urlApi, {
+  method: 'POST',
+  body: formData
+})
+  .then(res => {
+    return res.json()
+  })
+  .catch(error => {
+   console.log(error)
+  }) 
+  return response 
 }
-
-export default new ImageUploadService();
