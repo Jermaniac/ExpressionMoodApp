@@ -4,17 +4,25 @@ import { getMood } from '../services/image-upload.service';
 import '../styles/FormComponent.css'
 
 const FormComponent = () => {
+  const [getPhotoFile, setPhotoFile] = useState({
+    src: './assets/images/blankPhoto.png' 
+  })
   const expContext = useContext(ExpressionContext)
-
-  const [getPhotoFile, setPhotoFile] = useState()
 
   const selectPhoto = (event) => {
     const photoSelect = event.target.files[0];
-    setPhotoFile(photoSelect);
+    setPhotoFile(prev => ({ ...prev, file: photoSelect }));
+    if (photoSelect) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPhotoFile(prev => ({ ...prev, src: e.target.result }));
+      };
+      reader.readAsDataURL(photoSelect)
+    }
   };
 
   const requestPredict = async () => {
-    const response = (await getMood(getPhotoFile));
+    const response = (await getMood(getPhotoFile.file));
     if (!response && !response.expressions){
       console.log("Call API FAILED.")
     }
@@ -40,7 +48,7 @@ const FormComponent = () => {
             style={{ display: "none" }}
             onChange={selectPhoto}
           ></input>
-          <img src={getPhotoFile?.photoUrl} alt="blankPic"></img>
+          <img src={getPhotoFile.src} alt="selectedImage" style={{ maxWidth: '300px', maxHeight: '300px' }}/>
         </label>
       </div>
       <div className="row">
