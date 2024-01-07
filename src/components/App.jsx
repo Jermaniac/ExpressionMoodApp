@@ -4,7 +4,7 @@ import { ExpressionContextProvider } from "../context/expressionContext";
 
 const App = () => {
   return (
-    <div className="px-10 py-10">
+    <div className="bg-black h-screen">
       <ExpressionContextProvider>
         <FormComponent />
         <InfoExpressions />

@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 import './index.css';
-
-const Root = (
-    <App />
-);
-
-const rootElement = document.getElementById('root');
+import App from './components/App';
 
 ReactDOM.render(
-  Root,
-  rootElement
+  <React.StrictMode>
+    <App/>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
