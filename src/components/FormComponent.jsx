@@ -32,39 +32,39 @@ const FormComponent = () => {
   };
 
   return (
-    <form
-      className="flex items-center justify-center px-20 border border-sky-500 rounded mx-auto"
+    <div className="bg-black p-5">
+      <form
+      className="bg-gradient-to-br from-purple-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 text-center"
       id="form"
     >
-      <div className="text-white">
-        <h1 className="" id="title">
-          Upload the photo you want to be predicted. Click on the image to
-          upload a photo.
-        </h1>
-        <label htmlFor="photo">
-          <input
-            type="file"
-            name="photo"
-            id="photo"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={selectPhoto}
-          ></input>
-          <img
-            src={getPhotoFile.src}
-            alt="selectedImage"
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-          />
-        </label>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          id="buttonSubmit"
-          onClick={requestPredict}
-        >
-          PREDICT THIS PHOTO
-        </button>
+      <div className="p-4 text-center text-white font-bold">
+        <p className="text-2xl" id="title">
+          Upload a photo you want to be predicted.
+        </p>
+        <p className="text-base" id="instructions">
+          Click on the image to upload a photo.
+        </p>
       </div>
+      <label htmlFor="photo">
+        <input
+          className="hidden"
+          type="file"
+          name="photo"
+          id="photo"
+          accept="image/*"
+          onChange={selectPhoto}
+        ></input>
+        <img className="p-10" src={getPhotoFile.src} alt="selectedImage" />
+      </label>
+      <button
+        className="bg-white text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
+        id="buttonSubmit"
+        onClick={requestPredict}
+      >
+        PREDICT THIS PHOTO
+      </button>
     </form>
+    </div>
   );
 };
 
