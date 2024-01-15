@@ -23,11 +23,9 @@ const FormComponent = () => {
   const requestPredict = async (event) => {
     event.preventDefault();
     const response = await getMood(getPhotoFile.file);
-    if (!response && !response.expressions) {
-      console.log("Call API FAILED.");
+    if (response && response.expressions) {
+      expContext.setExpressions(response.expressions);
     }
-    console.log("Call API SUCCESS!");
-    expContext.setExpressions(response.expressions);
   };
 
   return (
@@ -59,13 +57,16 @@ const FormComponent = () => {
             alt="selectedImage"
           />
         </label>
-        <button
-          className="bg-white text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
-          id="buttonSubmit"
-          onClick={requestPredict}
-        >
-          PREDICT THIS PHOTO
-        </button>
+        {getPhotoFile.file && (
+          <button
+            className="bg-white text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
+            id="buttonSubmit"
+            onClick={requestPredict}
+            disabled={!getPhotoFile.file}
+          >
+            PREDICT THIS PHOTO
+          </button>
+        )}
       </form>
     </div>
   );
