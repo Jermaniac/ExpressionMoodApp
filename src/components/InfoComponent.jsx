@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ExpressionContext } from "../context/expressionContext";
-import "../styles/InfoComponent.css";
 
 const EXPRESSION_GRADIENT_COLORS = {
   happy: "to-yellow-400",
@@ -28,7 +27,7 @@ const InfoComponent = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-3xl gap-4">
         {expressionsFormatted &&
           expressionsFormatted.map((expression, index) => {
-            let emojiSrc = `./assets/images/emoji_${expression.mood}.png`;
+            let emojiSrc = `./assets/images/emoji_${expression.mood}.webp`;
             return (
               <div
                 key={`expression_mood_${index}`}

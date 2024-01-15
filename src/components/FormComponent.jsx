@@ -1,11 +1,10 @@
 import { useContext, useState } from "react";
 import { ExpressionContext } from "../context/expressionContext";
 import { getMood } from "../services/image-upload.service";
-// import '../styles/FormComponent.css'
 
 const FormComponent = () => {
   const [getPhotoFile, setPhotoFile] = useState({
-    src: "./assets/images/blankPhoto.png",
+    src: "./assets/images/blankPhoto.webp",
   });
   const expContext = useContext(ExpressionContext);
 
