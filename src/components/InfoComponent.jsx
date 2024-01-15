@@ -24,28 +24,29 @@ const InfoComponent = () => {
   }, [expressions]);
 
   return (
-    <div className="bg-black p-8" id="info">
-      <div className="space-y-4">
+    <div className="flex justify-center bg-black p-5" id="info">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-3xl gap-4">
         {expressionsFormatted &&
-          expressionsFormatted.map((expression) => {
+          expressionsFormatted.map((expression, index) => {
             let emojiSrc = `./assets/images/emoji_${expression.mood}.png`;
             return (
               <div
-                className={`flex flex-col items-center bg-gradient-to-br from-purple-100 ${
+                key={`expression_mood_${index}`}
+                className={`bg-gradient-to-br from-purple-100 ${
                   EXPRESSION_GRADIENT_COLORS[expression.mood]
                 } p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300`}
               >
-                <h2 className="p-4 text-center text-white font-bold capitalize">
+                <h2 className="p-4 text-center font-bold capitalize">
                   {expression.mood}
                 </h2>
                 <img
-                  className="p-4 max-w-48"
+                  className="p-4 w-48"
                   src={emojiSrc}
                   alt={expression.mood}
                 ></img>
                 <div className="w-full border">
                   <div
-                    className="relative top-0 left-0 bg-green-500 transition-all duration-500 ease-in-out"
+                    className="relative top-0 left-0 bg-green-500 transition-all duration-500 ease-in-out font-bold"
                     style={{ width: `${expression.probability}%` }}
                   >
                     {expression.probability.toFixed(2)}%

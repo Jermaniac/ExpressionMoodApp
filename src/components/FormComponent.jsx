@@ -32,38 +32,42 @@ const FormComponent = () => {
   };
 
   return (
-    <div className="bg-black p-5">
+    <div className="flex justify-center bg-black p-5" id="form">
       <form
-      className="bg-gradient-to-br from-purple-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 text-center"
-      id="form"
-    >
-      <div className="p-4 text-center text-white font-bold">
-        <p className="text-2xl" id="title">
-          Upload a photo you want to be predicted.
-        </p>
-        <p className="text-base" id="instructions">
-          Click on the image to upload a photo.
-        </p>
-      </div>
-      <label htmlFor="photo">
-        <input
-          className="hidden"
-          type="file"
-          name="photo"
-          id="photo"
-          accept="image/*"
-          onChange={selectPhoto}
-        ></input>
-        <img className="p-10" src={getPhotoFile.src} alt="selectedImage" />
-      </label>
-      <button
-        className="bg-white text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
-        id="buttonSubmit"
-        onClick={requestPredict}
+        className="max-w-3xl bg-gradient-to-br from-purple-800 to-indigo-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 text-center"
+        id="form"
       >
-        PREDICT THIS PHOTO
-      </button>
-    </form>
+        <div className="p-4 text-center text-white font-bold">
+          <p className="text-2xl" id="title">
+            Upload a photo you want to be predicted.
+          </p>
+          <p className="text-base" id="instructions">
+            Click on the image to upload a photo.
+          </p>
+        </div>
+        <label className="flex justify-center" htmlFor="photo">
+          <input
+            className="hidden"
+            type="file"
+            name="photo"
+            id="photo"
+            accept="image/*"
+            onChange={selectPhoto}
+          ></input>
+          <img
+            className="p-6 w-80 h-96"
+            src={getPhotoFile.src}
+            alt="selectedImage"
+          />
+        </label>
+        <button
+          className="bg-white text-gray-800 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
+          id="buttonSubmit"
+          onClick={requestPredict}
+        >
+          PREDICT THIS PHOTO
+        </button>
+      </form>
     </div>
   );
 };
