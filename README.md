@@ -73,10 +73,9 @@
 <img width="979" alt="image" src="https://github.com/Jermaniac/ExpressionMoodApp/assets/47125376/946ecf90-56f3-4ffb-92cc-8e4fef09c155">
 I am utilizing a custom API that I designed, accessible at [Github](https://github.com/Jermaniac/ExpressionAPI), which connects with a Convolutional Neural Network (CNN). I developed and trained this CNN as part of my final project during my studies in Software Engineering at UPM (Universidad Politécnica de Madrid).
 You can check my TFG repository [here](https://github.com/gggarzon/TrabajoFinGradoGerman).
-
+After developing this CNN I decided to create a web client using what I have learned during my profesional experience working as a web developer.
 This CNN achieves a reliable 65% prediction accuracy.
 <img width="577" alt="image" src="https://github.com/Jermaniac/ExpressionMoodApp/assets/47125376/f28cf5af-0650-4ffc-ad71-ed050af6bb57">
-After developing this CNN I decided to create a web client using what I have learned during my profesional experience working as a web developer.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
