@@ -35,7 +35,7 @@
   <p align="center">
     This is a web application that recognizes seven facial expressions (angry, disgusted, scared, happy, sad, surprised, neutral) from a photograph using a Convolutional Neural Network (CNN). Essentially, it involves a client-server structure where the client sends a photograph to the server, which in this case is the CNN. The server makes predictions and sends the results back to the client as a response. The client get the results and show them to the user in a simple and intuitive way.
     <br />
-    <a href="https://github.com/Jermaniac/ExpressionMoodApp">View Demo</a>
+    <a href="https://expression-test-9mcldoun8-jermaniac.vercel.app">View Demo</a>
     ·
     <a href="https://github.com/Jermaniac/ExpressionMoodApp/issues">Report Bug</a>
     ·
