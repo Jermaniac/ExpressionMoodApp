@@ -29,17 +29,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Jermaniac/ExpressionMoodApp">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
 <h3 align="center">ExpressionMoodApp</h3>
 
   <p align="center">
-    Se trata de una aplicación en Android que reconoce siete expresiones faciales (enfadado, disgustado, asustado, feliz, triste, sorprendido, neutral) a partir de una fotografía utilizando una red neuronal convolucional o CNN. Basicamente se trata de una estructura cliente-servidor en donde el cliente o dispositivo móvil envía una fotografía al servidor o en este caso la CNN. El servidor realiza la predicción y envía como respuesta al cliente los resultados. El cliente interpreta los resultados y los muestra al usuario de forma sencilla e intuitiva.
-    <br />
-    <a href="https://github.com/Jermaniac/ExpressionMoodApp"><strong>Explore the docs »</strong></a>
-    <br />
+    This is a web application that recognizes seven facial expressions (angry, disgusted, scared, happy, sad, surprised, neutral) from a photograph using a Convolutional Neural Network (CNN). Essentially, it involves a client-server structure where the client sends a photograph to the server, which in this case is the CNN. The server makes predictions and sends the results back to the client as a response. The client get the results and show them to the user in a simple and intuitive way.
     <br />
     <a href="https://github.com/Jermaniac/ExpressionMoodApp">View Demo</a>
     ·
@@ -67,9 +61,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -79,34 +71,20 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Jermaniac`, `ExpressionMoodApp`,`germán-gonzález-garzón-8807a2162`, `gmail`, `germansk98`, `ExpressionMoodApp`, `Se trata de una aplicación en Android que reconoce siete expresiones faciales (enfadado, disgustado, asustado, feliz, triste, sorprendido, neutral) a partir de una fotografía utilizando una red neuronal convolucional o CNN. Basicamente se trata de una estructura cliente-servidor en donde el cliente o dispositivo móvil envía una fotografía al servidor o en este caso la CNN. El servidor realiza la predicción y envía como respuesta al cliente los resultados. El cliente interpreta los resultados y los muestra al usuario de forma sencilla e intuitiva.`
+``
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
 - [![React][react.js]][react-url]
-- [![Bootstrap][bootstrap.com]][bootstrap-url]
+- [![Tailwind][tailwind.com]][tailwind-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
@@ -118,9 +96,9 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-3. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Start the project
+   ```sh
+   npm start
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -129,22 +107,6 @@ This is an example of how to list things you need to use the software and how to
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
-
-See the [open issues](https://github.com/Jermaniac/ExpressionMoodApp/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -165,21 +127,11 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 
 ## Contact
 
-Your Name - germansk98@gmail.com
-
-Project Link: [https://github.com/Jermaniac/ExpressionMoodApp](https://github.com/Jermaniac/ExpressionMoodApp)
+Linkedin: [Germán González Garzón](https://es.linkedin.com/in/germ%C3%A1n-gonz%C3%A1lez-garz%C3%B3n-8807a2162)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -187,14 +139,13 @@ Project Link: [https://github.com/Jermaniac/ExpressionMoodApp](https://github.co
 
 ## Acknowledgments
 
-- []()
-- []()
-- []()
+- The first upload request may experience a delay due to
+  server initialization. If this occurs, please try again after a
+  minute.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+This documentation template was made using: [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 [contributors-shield]: https://img.shields.io/github/contributors/Jermaniac/ExpressionMoodApp.svg?style=for-the-badge
 [contributors-url]: https://github.com/Jermaniac/ExpressionMoodApp/graphs/contributors
@@ -210,3 +161,5 @@ Project Link: [https://github.com/Jermaniac/ExpressionMoodApp](https://github.co
 [linkedin-url]: https://linkedin.com/in/germán-gonzález-garzón-8807a2162
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-url]: https://reactjs.org/
+[tailwind.com]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[tailwind-url]: https://tailwindcss.com/
