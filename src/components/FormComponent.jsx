@@ -71,7 +71,7 @@ const FormComponent = () => {
               onChange={selectPhoto}
             ></input>
             <img
-              className="p-6 w-90 h-96"
+              className="p-6 w-72 h-46 sm:w-96 sm:h-96"
               src={getPhotoFile.src}
               alt="selectedImage"
             />
@@ -79,7 +79,7 @@ const FormComponent = () => {
         </div>
         {getPhotoFile.file && (
           <button
-            className="w-2/4 bg-white text-gray-800 font-bold py-2 px-4 rounded-xl hover:bg-gray-200 transition duration-300"
+            className="bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded-xl hover:bg-gray-300 text-xs whitespace-nowrap sm:text-base"
             id="buttonSubmit"
             onClick={requestPredict}
             disabled={isLoading || !getPhotoFile.file}
