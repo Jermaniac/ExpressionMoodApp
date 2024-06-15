@@ -1,18 +1,18 @@
 const keyFile = "photo";
-const urlApi =  "https://expression-mood-api.herokuapp.com/getMood";
+const urlApi = process.env.REACT_APP_URL_API;
 
 export const getMood = async (file) => {
   const formData = new FormData();
   formData.append(keyFile, file);
   const response = await fetch(urlApi, {
-  method: 'POST',
-  body: formData
-})
-  .then(res => {
-    return res.json()
+    method: "POST",
+    body: formData,
   })
-  .catch(error => {
-   console.log(error)
-  }) 
-  return response 
-}
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return response;
+};
