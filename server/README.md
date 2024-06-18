@@ -1,2 +1,6 @@
 # ExpressionAPI
-Este es un repositorio que incluye el script para hacer funcionar una red neuronal convolucional a través de Heroku (definida en https://github.com/Jermaniac/TrabajoFinGradoGerman).
+
+This folder includes everything that is required to run CNN API running app.py.
+The model is saved in expressionsh5MODELtestX.
+All the libraries used are in requirements.txt.
+(This CNN is defined into https://github.com/Jermaniac/TrabajoFinGradoGerman).
