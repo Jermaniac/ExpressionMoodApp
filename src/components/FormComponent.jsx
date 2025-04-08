@@ -12,7 +12,7 @@ const FormComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
   const [getPhotoFile, setPhotoFile] = useState({
-    src: "./assets/images/blankPhoto.webp",
+    src: "assets/images/blankPhoto.webp",
   });
   const expContext = useContext(ExpressionContext);
 

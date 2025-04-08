@@ -1,5 +1,5 @@
 const keyFile = "photo";
-const urlApi = process.env.REACT_APP_URL_API;
+const urlApi = import.meta.env.VITE_REACT_APP_URL_API;
 
 export const getMood = async (file) => {
   const formData = new FormData();
