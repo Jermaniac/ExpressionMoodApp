@@ -7,7 +7,7 @@ const InfoExpressions = () => {
   if (!Array.isArray(expressions) || expressions.length === 0) {
     return (
       <div
-        className="relative w-full h-full flex flex-1 flex-col items-center content-center justify-center text-white"
+        className="w-full relative flex-1 flex justify-center content-center flex-col items-center text-white hidden justify-items-center max-w-md lg:max-w-md lg:inline"
         id="container-nodata"
       >        <p className="text-lg font-semibold mb-4">No photo uploaded yet.</p>
         <p className="text-sm mb-2">Please upload a photo.</p>
