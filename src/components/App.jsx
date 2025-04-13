@@ -1,15 +1,11 @@
-import InfoExpressions from "./InfoComponent";
-import FormComponent from "./FormComponent";
 import { ExpressionContextProvider } from "../context/expressionContext";
+import MainComponent from "./MainComponent";
 
 const App = () => {
   return (
-    <div className="bg-black h-screen">
       <ExpressionContextProvider>
-        <FormComponent />
-        <InfoExpressions />
+        <MainComponent />
       </ExpressionContextProvider>
-    </div>
   );
 };
 

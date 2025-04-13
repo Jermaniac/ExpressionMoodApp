@@ -1,78 +1,61 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useMemo } from "react";
 import { ExpressionContext } from "../context/expressionContext";
 
-const EXPRESSION_GRADIENT_COLORS = {
-  happy: "to-yellow-400",
-  sad: "to-blue-500",
-  surprise: "to-purple-900",
-  fear: "to-gray-950",
-  disgust: "to-green-900",
-  neutral: "to-gray-400",
-  angry: "to-red-700",
-};
-
-const InfoComponent = () => {
-  const [expressionsFormatted, setExpressionsFormatted] = useState([]);
+const InfoExpressions = () => {
   const { expressions } = useContext(ExpressionContext);
 
-  useEffect(() => {
-    if (expressions && Array.isArray(expressions) && expressions.length) {
-      const expressionsFormated = formatProbabilities(expressions);
-      setExpressionsFormatted(expressionsFormated);
-    }
+  if (!Array.isArray(expressions) || expressions.length === 0) {
+    return (
+      <div
+        className="relative w-full h-full flex flex-1 flex-col items-center content-center justify-center text-white"
+        id="container-nodata"
+      >        <p className="text-lg font-semibold mb-4">No photo uploaded yet.</p>
+        <p className="text-sm mb-2">Please upload a photo.</p>
+        <p className="text-sm">Upload a photo to analyze expressions.</p>
+      </div>
+    );
+  }
+
+  const sortedExpressions = useMemo(() => {
+    return [...expressions].sort((a, b) => b.probability - a.probability);
   }, [expressions]);
 
   return (
-    <div className="flex justify-center bg-black p-5" id="info">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-3xl gap-4">
-        {expressionsFormatted &&
-          expressionsFormatted.map((expression, index) => {
-            let emojiSrc = `assets/images/emoji_${expression.mood}.webp`;
-            return (
-              <div
-                key={`expression_mood_${index}`}
-                className={`bg-gradient-to-br from-purple-100 ${
-                  EXPRESSION_GRADIENT_COLORS[expression.mood]
-                } p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300`}
-              >
-                <h2 className="p-4 text-center font-bold capitalize">
-                  {expression.mood}
-                </h2>
-                <img
-                  className="p-4 w-48"
-                  src={emojiSrc}
-                  alt={expression.mood}
-                ></img>
-                <div className="w-full border">
-                  <div
-                    className="relative top-0 left-0 bg-green-500 transition-all duration-500 ease-in-out font-bold"
-                    style={{ width: `${expression.probability}%` }}
-                  >
-                    {expression.probability.toFixed(2)}%
-                  </div>
-                </div>
-                <div className="relative"></div>
-              </div>
-            );
-          })}
+    <div className="w-full relative flex-1 flex justify-center content-center flex-col items-center max-w-md lg:max-w-md" id="container-info">
+      <div className="bg-black rounded-lg p-6 flex flex-col items-center text-white mb-6 w-full">
+        <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-2xl font-bold mb-4">
+          {Math.round(sortedExpressions[0].probability * 100)}%
+        </div>
+        <span className="text-center font-medium text-lg">
+          {sortedExpressions[0].mood}
+        </span>
       </div>
+
+      <ul className="bg-black w-full rounded-lg p-4">
+        {sortedExpressions.map((expression, index) => (
+          <li
+            key={index}
+            className="flex justify-between items-center text-white py-2 border-b border-gray-700 last:border-b-0"
+          >
+            <span className="font-medium capitalize">{expression.mood}</span>
+            <div className="flex items-center gap-2">
+              <div
+                className="sm:w-16 sm:h-2 bg-gray-700 rounded-full overflow-hidden"
+              >
+                <div
+                  className="h-full bg-blue-500"
+                  style={{ width: `${expression.probability * 100}%` }}
+                ></div>
+              </div>
+              <span className="text-sm text-gray-400">
+                {Math.round(expression.probability * 100)}%
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-function formatProbabilities(expressions) {
-  return (
-    expressions &&
-    expressions.length &&
-    expressions
-      .map((expression) => {
-        return {
-          ...expression,
-          probability: expression.probability * 100,
-        };
-      })
-      .sort((a, b) => b.probability - a.probability)
-  );
-}
-
-export default InfoComponent;
+export default InfoExpressions;
