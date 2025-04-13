@@ -26,7 +26,7 @@ const InfoExpressions = () => {
         <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-2xl font-bold mb-4">
           {Math.round(sortedExpressions[0].probability * 100)}%
         </div>
-        <span className="text-center font-medium text-lg">
+        <span className="text-center font-medium text-lg capitalize">
           {sortedExpressions[0].mood}
         </span>
       </div>
@@ -39,15 +39,13 @@ const InfoExpressions = () => {
           >
             <span className="font-medium capitalize">{expression.mood}</span>
             <div className="flex items-center gap-2">
-              <div
-                className="sm:w-16 sm:h-2 bg-gray-700 rounded-full overflow-hidden"
-              >
+              <div className="w-60 h-2 bg-gray-700 rounded-full overflow-hidden flex-1 hidden sm:inline">
                 <div
                   className="h-full bg-blue-500"
                   style={{ width: `${expression.probability * 100}%` }}
                 ></div>
               </div>
-              <span className="text-sm text-gray-400">
+              <span className="text-sm text-gray-400 w-12 text-right">
                 {Math.round(expression.probability * 100)}%
               </span>
             </div>
