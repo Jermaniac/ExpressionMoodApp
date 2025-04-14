@@ -35,7 +35,7 @@ const InfoExpressions = () => {
   const topExpression = sortedExpressions[0];
   return (
     <div
-      className="w-full flex-1 flex flex-col items-center justify-center"
+      className="flex-1 flex flex-col items-center justify-center"
       id="container-info"
     >
       <div className="bg-black rounded-lg p-6 flex flex-col items-center w-full">
@@ -49,7 +49,7 @@ const InfoExpressions = () => {
         </span>
       </div>
 
-      <ul className="bg-black w-full rounded-lg p-4">
+      <ul className="bg-black w-full rounded-lg p-4 mt-4">
         {sortedExpressions.map((expression, index) => (
           <li
             key={index}
@@ -63,7 +63,7 @@ const InfoExpressions = () => {
                   style={{ width: `${expression.probability * 100}%` }}
                 ></div>
               </div>
-              <span className="text-sm text-gray-400 w-12 text-right">
+              <span className="text-sm text-gray-400 w-12 text-right text-white">
                 {Math.round(expression.probability * 100)}%
               </span>
             </div>
