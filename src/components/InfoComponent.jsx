@@ -17,7 +17,7 @@ const InfoExpressions = () => {
   if (!Array.isArray(expressions) || expressions.length === 0) {
     return (
       <div
-        className="w-full flex-1 flex flex-col items-center justify-center text-white max-w-md lg:max-w-md"
+        className="w-full flex-1 flex flex-col items-center justify-center text-white"
         id="container-nodata"
       >
         <p className="text-lg font-semibold mb-4">No photo uploaded yet.</p>
@@ -35,10 +35,10 @@ const InfoExpressions = () => {
   const topExpression = sortedExpressions[0];
   return (
     <div
-      className="w-full flex-1 flex flex-col items-center justify-center max-w-md lg:max-w-md"
+      className="w-full flex-1 flex flex-col items-center justify-center"
       id="container-info"
     >
-      <div className="bg-black rounded-lg p-6 flex flex-col items-center mb-6 w-full">
+      <div className="bg-black rounded-lg p-6 flex flex-col items-center w-full">
         <div
           className={`bg-gradient-to-br from-gray-400 ${EXPRESSION_GRADIENT_COLORS[topExpression.mood]} p-6 rounded-full shadow-lg hover:shadow-xl transition duration-300 w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 text-black`}
         >

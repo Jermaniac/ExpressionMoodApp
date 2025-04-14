@@ -4,7 +4,7 @@ import MainComponent from "./MainComponent";
 const App = () => {
   return (
       <ExpressionContextProvider>
-        <MainComponent />
+        <MainComponent/>
       </ExpressionContextProvider>
   );
 };

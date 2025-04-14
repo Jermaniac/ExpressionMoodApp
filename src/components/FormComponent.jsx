@@ -34,11 +34,12 @@ const FormComponent = () => {
       .finally(() => {
         clearTimeout(timeoutId);
         setIsLoading(false);
+        setShowTimeoutMessage(false);
       });
   };
 
   return (
-    <div className="relative flex-1 flex justify-center content-center flex-col max-w-md" id="container-form">
+    <div className="relative flex-1 flex justify-center content-center flex-col" id="container-form">
       <div className="flex flex-col text-left text-white font-bold gap-6">
         <p className="text-4xl lg:text-6xl" id="title">
           Upload a photo you want to be predicted
@@ -133,17 +134,17 @@ const FormComponent = () => {
         </div>
       </section>
 
-      <div className="text-justify text-red-500 font-bold h-16 flex items-center justify-center" aria-live="polite">
-        {showTimeoutMessage ? (
+      {showTimeoutMessage ? (
+        <div className="text-justify text-red-500 font-bold h-16 flex items-center justify-center" aria-live="polite">
           <p className="text-xl" id="timeout_message">
             Note: The first upload request may experience a delay due to
             server initialization. If this occurs, please try again after a
             minute.
           </p>
-        ) : (
-          <span className="invisible"></span>
-        )}
-      </div>
+        </div>
+      ) : (
+        <span className="hidden"></span>
+      )}
     </div>
   );
 };
