@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { ExpressionContext } from "../context/expressionContext";
 import { getMood } from "../services/image-upload.service";
 
+const ENDPOINT_CALL_TIMEOUT = 4000
+
 const FormComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
@@ -25,10 +27,14 @@ const FormComponent = () => {
     setIsLoading(true);
     timeoutId = setTimeout(() => {
       setShowTimeoutMessage(true);
-    }, 4000);
+    }, ENDPOINT_CALL_TIMEOUT);
     await getMood(getPhotoFile.file)
       .then((response) => {
-        expContext.setExpressions(response.expressions);
+        const sortedExpressions = [...response.expressions].sort(
+          (a, b) => b.probability - a.probability
+        );
+        expContext.setExpressions(sortedExpressions);
+        expContext.setWinnerMood(sortedExpressions[0].mood);
       })
       .catch((error) => console.log("Error calling API: ", error))
       .finally(() => {
@@ -45,7 +51,7 @@ const FormComponent = () => {
           Upload a photo you want to be predicted
         </p>
         <p className="text-base" id="description">
-          Click on the image to upload a photo
+          Click below to upload a photo
         </p>
       </div>
 
