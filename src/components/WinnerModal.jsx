@@ -7,7 +7,7 @@ const WinnerModal = ({ mood, onClose }) => {
     const timer = setTimeout(() => {
       setVisible(false);
       setTimeout(onClose, 500);
-    }, 3000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, [onClose]);
 

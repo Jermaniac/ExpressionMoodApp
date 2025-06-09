@@ -19,30 +19,33 @@ const InfoExpressions = () => {
       className="flex-1 flex flex-col items-center justify-center"
       id="container-info"
     >
-    <ul className="bg-black w-full rounded-lg p-4">
-      {expressions.map((expression, index) => (
-        <li
-          key={index}
-          className="flex justify-between items-center py-2 border-b border-gray-700 last:border-b-0"
-        >
-          <span className="flex items-center gap-2">
-            <img
-              src={`/assets/images/emoji_${expression.mood}.webp`}
-              alt={expression.mood}
-              className="w-6 h-6"
-            />
-            <span className={`font-medium capitalize ${EXPRESSION_COLORS[expression.mood]}`}>
-              {expression.mood}
+      <ul className="bg-black w-full rounded-lg p-4">
+        {expressions.map((expression, index) => (
+          <li
+            key={index}
+            className="flex justify-between items-center py-2 border-b border-gray-700 last:border-b-0"
+          >
+            <span className="flex items-center gap-2">
+              <img
+                src={`/assets/images/emoji_${expression.mood}.webp`}
+                alt={expression.mood}
+                className="w-6 h-6 object-contain"
+                width={24}
+                height={24}
+                style={{ display: "block" }}
+              />
+              <span className={`font-medium capitalize ${EXPRESSION_COLORS[expression.mood]}`}>
+                {expression.mood}
+              </span>
             </span>
-          </span>
-        <div className="flex items-center gap-2 w-full">
-          <span className="text-sm text-gray-400 w-12 text-right block ml-auto">
-            {Math.round(expression.probability * 100)}%
-          </span>
-        </div>
-        </li>
-      ))}
-    </ul>
+            <div className="flex items-center gap-2 w-full">
+              <span className="text-sm text-gray-400 w-12 text-right block ml-auto">
+                {Math.round(expression.probability * 100)}%
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

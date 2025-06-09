@@ -2,50 +2,55 @@ import { useContext, useState } from "react";
 import { ExpressionContext } from "../context/expressionContext";
 import { getMood } from "../services/image-upload.service";
 
-const ENDPOINT_CALL_TIMEOUT = 4000
+const ENDPOINT_CALL_TIMEOUT = 5000;
 
 const FormComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
-  const [getPhotoFile, setPhotoFile] = useState({});
+  const [photoFile, setPhotoFile] = useState({ file: null, src: "" });
   const expContext = useContext(ExpressionContext);
 
   const selectPhoto = (event) => {
-    const photoSelect = event.target.files[0];
-    setPhotoFile((prev) => ({ ...prev, file: photoSelect }));
-    if (photoSelect) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setPhotoFile((prev) => ({ ...prev, src: e.target.result }));
-      };
-      reader.readAsDataURL(photoSelect);
-    }
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setPhotoFile({ file, src: e.target.result });
+    };
+    reader.onerror = () => {
+      setPhotoFile({ file: null, src: "" });
+      alert("Failed to read file.");
+    };
+    reader.readAsDataURL(file);
   };
 
   const requestPredict = async () => {
-    let timeoutId;
     setIsLoading(true);
-    timeoutId = setTimeout(() => {
-      setShowTimeoutMessage(true);
-    }, ENDPOINT_CALL_TIMEOUT);
-    await getMood(getPhotoFile.file)
-      .then((response) => {
-        const sortedExpressions = [...response.expressions].sort(
-          (a, b) => b.probability - a.probability
-        );
-        expContext.setExpressions(sortedExpressions);
-        expContext.setWinnerMood(sortedExpressions[0].mood);
-      })
-      .catch((error) => console.log("Error calling API: ", error))
-      .finally(() => {
-        clearTimeout(timeoutId);
-        setIsLoading(false);
-        setShowTimeoutMessage(false);
-      });
+    const timeoutId = setTimeout(() => setShowTimeoutMessage(true), ENDPOINT_CALL_TIMEOUT);
+
+    try {
+      const response = await getMood(photoFile.file);
+      const sortedExpressions = [...response.expressions].sort(
+        (a, b) => b.probability - a.probability
+      );
+      expContext.setExpressions(sortedExpressions);
+      expContext.setWinnerMood(sortedExpressions[0].mood);
+    } catch (error) {
+      console.error("Error calling API: ", error);
+      alert("Failed to predict mood. Please try again.");
+    } finally {
+      clearTimeout(timeoutId);
+      setIsLoading(false);
+      setShowTimeoutMessage(false);
+    }
   };
 
   return (
-    <div className="relative flex-1 flex justify-center content-center flex-col" id="container-form">
+    <div
+      className="relative flex-1 flex justify-center content-center flex-col"
+      id="container-form"
+      aria-busy={isLoading}
+    >
       <div className="flex flex-col text-left text-white font-bold gap-6">
         <p className="text-4xl lg:text-6xl" id="title">
           Upload a photo you want to be predicted
@@ -67,15 +72,16 @@ const FormComponent = () => {
                 type="file"
                 className="hidden"
                 accept="image/*"
-                onChange={(e) => selectPhoto(e)}
+                onChange={selectPhoto}
+                disabled={isLoading}
               />
               <label htmlFor="upload" className="cursor-pointer">
-
-                {getPhotoFile.src ? (
+                {photoFile.src ? (
                   <img
                     className="max-h-48 rounded-lg mx-auto"
-                    src={getPhotoFile.src}
+                    src={photoFile.src}
                     alt="Image preview"
+                    loading="lazy"
                   />
                 ) : (
                   <>
@@ -97,15 +103,20 @@ const FormComponent = () => {
                       Upload picture
                     </h5>
                   </>
-
                 )}
               </label>
             </div>
             <div className="w-full flex items-center justify-center">
               <button
-                className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center cursor-pointer ${isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-black hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-600"}`}
-                onClick={() => requestPredict()}
-                disabled={isLoading}
+                className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center cursor-pointer transition
+      ${isLoading || photoFile.file === null
+                    ? "bg-gray-400 cursor-not-allowed opacity-60"
+                    : "bg-black hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-600"
+                  }`}
+                onClick={requestPredict}
+                disabled={isLoading || photoFile.file === null}
+                aria-busy={isLoading}
+                aria-disabled={isLoading || photoFile.file === null}
               >
                 {isLoading ? (
                   <>
@@ -132,7 +143,9 @@ const FormComponent = () => {
                     Loading...
                   </>
                 ) : (
-                  <span className="text-center ml-2">Upload</span>
+                  <span className="text-center ml-2">
+                    Predict this photo
+                  </span>
                 )}
               </button>
             </div>
@@ -140,7 +153,7 @@ const FormComponent = () => {
         </div>
       </section>
 
-      {showTimeoutMessage ? (
+      {showTimeoutMessage && (
         <div className="text-justify text-red-500 font-bold h-16 flex items-center justify-center" aria-live="polite">
           <p className="text-xl" id="timeout_message">
             Note: The first upload request may experience a delay due to
@@ -148,8 +161,6 @@ const FormComponent = () => {
             minute.
           </p>
         </div>
-      ) : (
-        <span className="hidden"></span>
       )}
     </div>
   );
