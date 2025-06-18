@@ -13,6 +13,13 @@ const FormComponent = () => {
   const selectPhoto = (event) => {
     const file = event.target.files[0];
     if (!file) return;
+
+    if (file.type === "image/webp") {
+      alert("WEBP images are not supported at this moment. Please upload other formats.");
+      setPhotoFile({ file: null, src: "" });
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = (e) => {
       setPhotoFile({ file, src: e.target.result });
@@ -103,7 +110,7 @@ const FormComponent = () => {
                       Upload picture
                     </h2>
                     <h6 className="mb-2 text-sm tracking-tight text-gray-400">
-                      Not supporting webp images for the moment
+                      Supports JPG, PNG, etc.
                     </h6>
                   </>
                 )}
