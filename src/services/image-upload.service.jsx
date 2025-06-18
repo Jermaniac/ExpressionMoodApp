@@ -1,4 +1,4 @@
-const keyFile = "photo";
+const keyFile = import.meta.env.VITE_REACT_APP_KEY_FILE;
 const urlApi = import.meta.env.VITE_REACT_APP_URL_API;
 
 export const getMood = async (file) => {

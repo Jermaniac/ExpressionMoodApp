@@ -99,9 +99,12 @@ const FormComponent = () => {
                         d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
                       />
                     </svg>
-                    <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-400">
+                    <h2 className="mb-2 text-xl font-bold tracking-tight text-gray-400">
                       Upload picture
-                    </h5>
+                    </h2>
+                    <h6 className="mb-2 text-sm tracking-tight text-gray-400">
+                      Not supporting webp images for the moment
+                    </h6>
                   </>
                 )}
               </label>

@@ -1,7 +1,9 @@
 from tensorflow.keras.models import load_model
 import numpy as np
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from PIL import Image
 import tempfile
 import os
@@ -40,12 +42,17 @@ def prepare_json(porcentajes):
 app = Flask(__name__)
 CORS(app)
 
+limiter = Limiter(get_remote_address, app=app, default_limits=["10 per minute"])
+
 @app.route("/getMood", methods=["POST"])
+@limiter.limit("10 per minute")
 def do_upload():
-    foto = request.files["photo"]
+    foto = request.files.get("photo")
+    if not foto:
+        return jsonify({"error": "No photo uploaded"}), 400
     with tempfile.TemporaryFile() as temp:
         foto.save(temp)
-        temp.seek(0)  # Reset file pointer to the beginning
+        temp.seek(0)
         imagen_lista = prepare_photo(Image.open(temp))
     resultado = do_prediction(imagen_lista)
     print(resultado)
